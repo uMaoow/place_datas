@@ -3,12 +3,7 @@ import json
 from sys import argv
 from dateutil import parser as dateparse
 import csv
-img = Image.new( 'RGBA', (3000,2000), "#00000000") # create a new black image # from -1500 -1000 to 1499 999
-
-# nap start     "2023-07-24 17:28:00.000"
-# nap end       "2023-07-24 19:13:00.000"
-# nap coord     1134 1463
-# nap size      60 91
+img = Image.new( 'RGBA', (3000,2000), "#00000000") 
 
 
 compare = [False, None, None]
@@ -27,7 +22,27 @@ imgname = ""
 
 
 def usage():
-    print("usage")
+    print("
+        ./main.py [options]
+            
+    options:
+            time_slot start end
+                only browse pixels between dates
+            zone x y width height
+                only browse pixels in zone
+            name x.png
+                name used to save picture files
+            pixel_rate x
+                if set, save a picture every x pixel drawn
+            compare x.png
+                only record pixel egals (coords and color) to the ones in given picture file
+            reverse_compare
+                only record pixel differents (coords and color) to the ones in given picture file (ignore non full alpha pixels)
+            save_id x.txt
+                save hashed user_id of every pixel which fills set requirements into x.txt
+            use_id x.txt y
+                only browse pixel set by user ids found y times according to x.txt list
+          ")
 def parse_argv():
     global zone, time_slot, pixel_rate, imgname, compare, save_id, id_dict, reverse_compare
     if len(argv) == 1:
@@ -98,8 +113,6 @@ def parse_argv():
                 return
             with open(argv[i + 1]) as jsonf:
                 id_dict = json.load(jsonf)
-                #print(id_dict)
-                #print(type(id_dict))
             use_id[0] = True
             use_id[1] = int(argv[i + 2])
             i += 2
@@ -145,7 +158,6 @@ def correct_id(row):
         return False
     if id_dict[row[1]] < use_id[1]:
         return False
-    #print(id_dict[row[1]])
     return True
 
 def is_in_time(row):
@@ -154,8 +166,6 @@ def is_in_time(row):
     if tmp < time_slot[1]:
         return False
     if tmp > time_slot[2]:
-        #pixel = pixel_rate
-        #draw(row)
         return False
     return True
 
@@ -171,12 +181,7 @@ def draw(row):
             return
     if compare[0] == True:
         if compare[1][int(row[2][1:])+1500, int(row[3][:-1])+1000] != (red, green, blue, 255):
-            #print("diff")
-            #print(compare[1][int(row[2][1:])+1500, int(row[3][:-1])+1000])
-            #print((red, green,blue, 255))
             return
-        #else:
-            #print("same")
     pixels[int(row[2][1:])+1500, int(row[3][:-1])+1000] = (red, green, blue)
     if save_id[0] == True:
         if id_dict.get(row[1]) == None:
@@ -197,7 +202,6 @@ for file_nb in range(*get_date_range()):
     parsed = 0
     name = 'csv/2023_place_canvas_history-0000000000' + str("%02d" % file_nb)
     print(name)
-    # PIL accesses images in Cartesian co-ordinates, so it is Image[columns, rows]
     pixels = img.load() # create the pixel map
 
     with open(name+'.csv', newline='') as csvfile:
@@ -230,6 +234,5 @@ if (save_id[0] == True):
         print(sorted_dic)
         json.dump(id_dict, fp)
     print("dict saved in %s" % save_id[1])
-if (pixel_rate == -1):
-    print("%s.png" % imgname)
-    img.save("%s.png" % imgname)
+print("%s.png" % imgname)
+img.save("%s.png" % imgname)
