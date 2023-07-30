@@ -22,26 +22,26 @@ imgname = ""
 
 
 def usage():
-    print("
-        ./main.py [options]
-            
-    options:
-            time_slot start end
-                only browse pixels between dates
-            zone x y width height
-                only browse pixels in zone
-            name x.png
-                name used to save picture files
-            pixel_rate x
-                if set, save a picture every x pixel drawn
-            compare x.png
-                only record pixel egals (coords and color) to the ones in given picture file
-            reverse_compare
-                only record pixel differents (coords and color) to the ones in given picture file (ignore non full alpha pixels)
-            save_id x.txt
-                save hashed user_id of every pixel which fills set requirements into x.txt
-            use_id x.txt y
-                only browse pixel set by user ids found y times according to x.txt list
+    print(" \
+        ./main.py [options] \
+             \
+    options: \
+            time_slot start end \
+                only browse pixels between dates \
+            zone x y width height \
+                only browse pixels in zone \
+            name x.png \
+                name used to save picture files \
+            pixel_rate x \
+                if set, save a picture every x pixel drawn \
+            compare x.png \
+                only record pixel egals (coords and color) to the ones in given picture file \
+            reverse_compare \
+                only record pixel differents (coords and color) to the ones in given picture file (ignore non full alpha pixels) \
+            save_id x.txt \
+                save hashed user_id of every pixel which fills set requirements into x.txt \
+            use_id x.txt y \
+                only browse pixel set by user ids found y times according to x.txt list \
           ")
 def parse_argv():
     global zone, time_slot, pixel_rate, imgname, compare, save_id, id_dict, reverse_compare
