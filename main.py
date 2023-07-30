@@ -15,7 +15,7 @@ zone = [False, [0,0,0,0]]
 time_slot = [False, 0,0]
 pixel_rate = -1
 pixel = 0
-imgname = ""
+imgname = "img"
 
 
 
