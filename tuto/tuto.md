@@ -1,9 +1,3 @@
-tuto exemple concret:
-
-tuto exemple concret:
-
-montrer des acointances idéologiques
-
 tuto par exemple concret:
 
 après avoir fait un timelapse et obtenu quelques images de l'ensemble du canva via la commande suivante et les options pixel_rate et name:
