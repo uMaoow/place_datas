@@ -41,3 +41,11 @@ will draw every pixel destroying the symbol.png state in the 160x52 rectangle fr
 `./main.py pixel_rate 10000 use_id symbol_defend.txt 3 name symbol_defenders`
 
 will draw for all the map and all the time pixel placed by ids recorded 3 times or more in symbol_defend.txt, then save a picture for every 10000 pixel in img with the format "symbol_defenders - date.png"
+
+
+
+add.py and diff.py are quick tools to create a dictionnary from different data sets
+./add.py A B C
+will create a C dictionnary that is the A + B entries
+./diff.py A B C
+will create a C dictionnary that is the A entries without any of the B entries
