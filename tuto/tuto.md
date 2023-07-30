@@ -1,4 +1,10 @@
-tuto par exemple concret:
+
+``tuto par exemple concret:``
+
+avant de vous lancer vous devrez telécharger et dézipper les csv de référence dans un dossier nommé csv
+vous pourrez les trouver ici https://placedata.reddit.com/data/canvas-history/2023/index.html
+
+
 
 après avoir fait un timelapse et obtenu quelques images de l'ensemble du canva via la commande suivante et les options pixel_rate et name:
 
